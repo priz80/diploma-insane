@@ -1,0 +1,19 @@
+{
+  "name": "diploma-insane-04",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "IGOR CHERNENKO",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development",
+    "start": "webpack serve --mode=development --open"
+  },
+  "devDependencies": {
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
+  }
+}
