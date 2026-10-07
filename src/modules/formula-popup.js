@@ -14,9 +14,11 @@ const formulaPopupModule = () => {
         const spaceAbove = iconRect.top;
 
         if (spaceAbove < popupHeight + 20) {
-          popup.style.bottom = 'auto';
-          popup.style.top = 'auto';
-          popup.style.transform = 'translate3d(0, 150px, 0)';
+          // popup.style.bottom = 'auto';
+          popup.style.top = '0';
+          popup.style.transform = 'translate3d(0, 85px, 0)';
+          popup.classList.add('flip-popup');
+          popup.style.padding = '40px 40px 0';
         }
 
         item.classList.add('active-item');
@@ -24,9 +26,11 @@ const formulaPopupModule = () => {
 
       icon.addEventListener('mouseleave', () => {
         item.classList.remove('active-item');
-        popup.style.bottom = '';
+        // popup.style.bottom = '';
         popup.style.top = '';
         popup.style.transform = '';
+        popup.classList.remove('flip-popup');
+        popup.style.padding = '20px 40px 0';
       });
     });
   });

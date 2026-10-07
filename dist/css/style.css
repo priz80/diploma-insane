@@ -1371,6 +1371,10 @@ template,
   opacity: 0.1;
 }
 
+.flip-popup::before {
+  transform: scale(-1);
+}
+
 .formula-item-popup p {
   padding-bottom: 15px;
 }
