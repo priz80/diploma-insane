@@ -1,3 +1,5 @@
+// src/modules/form-submit.js
+
 const formSubmitModule = () => {
   const forms = document.querySelectorAll('[id^="feedback"]');
 
@@ -21,7 +23,7 @@ const formSubmitModule = () => {
       });
 
       // Отправка на сервер
-      fetch('server.php', {
+      fetch('/server.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -58,6 +60,26 @@ const formSubmitModule = () => {
   if (closeThank && popupThank) {
     closeThank.addEventListener('click', () => {
       popupThank.style.visibility = 'hidden';
+    });
+  }
+
+  // Открытие popup конфиденциальности
+  const privacyLinks = document.querySelectorAll('.link-privacy[id="privacy"]');
+  const popupPrivacy = document.querySelector('.popup-privacy');
+  const closePrivacy = document.querySelector('.popup-privacy .close');
+
+  privacyLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (popupPrivacy) {
+        popupPrivacy.style.visibility = 'visible';
+      }
+    });
+  });
+
+  if (closePrivacy && popupPrivacy) {
+    closePrivacy.addEventListener('click', () => {
+      popupPrivacy.style.visibility = 'hidden';
     });
   }
 };

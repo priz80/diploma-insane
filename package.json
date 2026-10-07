@@ -9,7 +9,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
-    "start": "webpack serve --mode=development --open"
+    "start": "webpack serve --mode=development --open",
+    "server": "php -S localhost:8081 -t dist/"
   },
   "devDependencies": {
     "webpack": "^5.111.1",

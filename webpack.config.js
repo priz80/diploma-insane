@@ -1,16 +1,23 @@
 const path = require('path')
 
-module.exports={
+module.exports = {
   context: path.resolve(__dirname, 'src'),
-entry: './index.js',
-output:{filename:'main.js',
-  path: path.resolve(__dirname, 'dist')
-},
-devServer: {
-  hot: true,
-  static: {
-    directory: './dist',
-    watch: true
+  entry: './index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  devServer: {
+    hot: true,
+    static: {
+      directory: './dist',
+      watch: true
+    },
+    proxy: [
+      {
+        context: ['/server.php'],
+        target: 'http://localhost:8081'
+      }
+    ]
   }
-}
 }
