@@ -27,6 +27,7 @@ const formulaSliderModule = () => {
       if (i === index) {
         slide.classList.add("active");
         slide.style.opacity = "1";
+        slide.style.translateX = "50%";
         // slide.style.transform = "scale(1)";
       } else {
         slide.classList.remove("active");
