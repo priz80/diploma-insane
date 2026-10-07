@@ -1132,6 +1132,12 @@ template,
   margin-top: 102px;
 }
 
+
+.hide-slide {
+  opacity: 1;
+}
+
+
 @media (max-width: 575px) {
   .formula-slider {
     min-height: 265px;
@@ -1145,6 +1151,11 @@ template,
   margin-right: auto;
   opacity: 0.4;
   font-size: 18px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.formula-slider__slide.active {
+  opacity: 1;
 }
 
 .formula-slider__slide:before {
