@@ -3,6 +3,8 @@ const repairTypesTabsModule = () => {
   const sliderContainer = document.querySelector(".repair-types-slider");
   const arrowLeft = document.querySelector("#repair-types-arrow_left");
   const arrowRight = document.querySelector("#repair-types-arrow_right");
+  const navArrowLeft = document.querySelector("#nav-arrow-repair-left_base");
+  const navArrowRight = document.querySelector("#nav-arrow-repair-right_base");
   const counterCurrent = document.querySelector(".slider-counter-content__current");
   const counterTotal = document.querySelector(".slider-counter-content__total");
 
@@ -20,6 +22,36 @@ const repairTypesTabsModule = () => {
   // Текущий индекс слайда в активной группе
   let currentSlideIndex = 0;
   let currentGroupIndex = 0;
+
+  // Функция переключения на группу по индексу
+  function switchGroup(index) {
+    // Сбрасываем все скрытые группы в начальное состояние
+    slideGroups.forEach((group, i) => {
+      if (i !== index) {
+        resetGroup(i);
+      }
+    });
+
+    // Сбрасываем индекс слайда на 0 при смене группы
+    currentSlideIndex = 0;
+    currentGroupIndex = index;
+
+    // Добавляем active текущей кнопке
+    navItems.forEach(navItem => navItem.classList.remove("active"));
+    navItems[index].classList.add("active");
+
+    // Показываем соответствующую группу слайдов
+    slideGroups.forEach((group, i) => {
+      if (i === index) {
+        group.style.display = "block";
+      } else {
+        group.style.display = "none";
+      }
+    });
+
+    // Обновляем счетчик
+    updateCounter();
+  }
 
   // Инициализация: позиционируем слайды абсолютно внутри каждой группы
   slideGroups.forEach((group, groupIndex) => {
@@ -113,36 +145,11 @@ const repairTypesTabsModule = () => {
   // Обработчик клика по кнопке навигации
   navItems.forEach((item, index) => {
     item.addEventListener("click", () => {
-      // Сбрасываем все скрытые группы в начальное состояние
-      slideGroups.forEach((group, i) => {
-        if (i !== index) {
-          resetGroup(i);
-        }
-      });
-
-      // Сбрасываем индекс слайда на 0 при смене группы
-      currentSlideIndex = 0;
-      currentGroupIndex = index;
-
-      // Добавляем active текущей кнопке
-      navItems.forEach(navItem => navItem.classList.remove("active"));
-      item.classList.add("active");
-
-      // Показываем соответствующую группу слайдов
-      slideGroups.forEach((group, i) => {
-        if (i === index) {
-          group.style.display = "block";
-        } else {
-          group.style.display = "none";
-        }
-      });
-
-      // Обновляем счетчик
-      updateCounter();
+      switchGroup(index);
     });
   });
 
-  // Обработчик стрелок
+  // Обработчик стрелок слайдера
   if (arrowLeft) {
     arrowLeft.addEventListener("click", () => {
       showSlide(currentSlideIndex - 1);
@@ -152,6 +159,23 @@ const repairTypesTabsModule = () => {
   if (arrowRight) {
     arrowRight.addEventListener("click", () => {
       showSlide(currentSlideIndex + 1);
+    });
+  }
+
+  // Обработчик стрелок навигации
+  if (navArrowLeft) {
+    navArrowLeft.addEventListener("click", () => {
+      let newIndex = currentGroupIndex - 1;
+      if (newIndex < 0) newIndex = navItems.length - 1;
+      switchGroup(newIndex);
+    });
+  }
+
+  if (navArrowRight) {
+    navArrowRight.addEventListener("click", () => {
+      let newIndex = currentGroupIndex + 1;
+      if (newIndex >= navItems.length) newIndex = 0;
+      switchGroup(newIndex);
     });
   }
 
