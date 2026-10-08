@@ -19,7 +19,11 @@ module.exports = {
         context: ["/server.php"],
         target: "http://localhost:8081",
       },
+      {
+        context: ["/api"],
+        target: "http://localhost:4545",
+        pathRewrite: { "^/api": "" },
+      },
     ],
   },
 };
-
