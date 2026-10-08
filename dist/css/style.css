@@ -1130,11 +1130,19 @@ template,
 .formula-slider {
   min-height: 400px;
   margin-top: 102px;
-  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
 }
 
 .hide-slide {
   opacity: 1;
+}
+
+.formula-slider-wrap {
+  /* overflow: hidden; */
+  position: relative;
+  width: 100%;
 }
 
 @media (max-width: 575px) {
@@ -1145,9 +1153,6 @@ template,
 }
 
 .formula-slider__slide {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
   opacity: 0.4;
   font-size: 18px;
   transition:
@@ -1166,7 +1171,7 @@ template,
   content: "";
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: -1;
 }
 
 .formula-slider__slide .formula-item {
@@ -1252,8 +1257,7 @@ template,
   }
 
   .formula-slider-wrap {
-    display: flex;
-    justify-content: center
+    display: block;
   }
 }
 
