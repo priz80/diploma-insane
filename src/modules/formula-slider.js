@@ -42,14 +42,16 @@ const formulaSliderModule = () => {
         slide.style.pointerEvents = "auto";
       } else if (diff === -1) {
         // Предыдущий слайд слева
-        slide.style.transform = "translateX(-30%)";
+        const isMobile = window.innerWidth <= 767;
+        slide.style.transform = isMobile ? "translateX(-100%)" : "translateX(-30%)";
         slide.style.opacity = "0.4";
         slide.style.scale = "0.9";
         slide.style.zIndex = "1";
         slide.style.pointerEvents = "none";
       } else if (diff === 1) {
         // Следующий слайд справа
-        slide.style.transform = "translateX(30%)";
+        const isMobile = window.innerWidth <= 767;
+        slide.style.transform = isMobile ? "translateX(100%)" : "translateX(30%)";
         slide.style.opacity = "0.4";
         slide.style.scale = "0.9";
         slide.style.zIndex = "1";
