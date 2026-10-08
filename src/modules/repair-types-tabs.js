@@ -5,10 +5,33 @@ const repairTypesTabsModule = () => {
   const arrowRight = document.querySelector("#repair-types-arrow_right");
   const navArrowLeft = document.querySelector("#nav-arrow-repair-left_base");
   const navArrowRight = document.querySelector("#nav-arrow-repair-right_base");
+  const navList = document.querySelector(".nav-list-repair");
   const counterCurrent = document.querySelector(".slider-counter-content__current");
   const counterTotal = document.querySelector(".slider-counter-content__total");
 
   if (!sliderContainer || navItems.length === 0) return;
+
+  // --- Навигация: слайдер nav-list ---
+  let navScrollPos = 0;
+
+  function scrollNavLeft() {
+    navScrollPos = Math.max(0, navScrollPos - 259);
+    navList.style.transform = `translateX(-${navScrollPos}px)`;
+  }
+
+  function scrollNavRight() {
+    const maxScroll = navList.scrollWidth - navList.parentElement.offsetWidth;
+    navScrollPos = Math.min(maxScroll, navScrollPos + 259);
+    navList.style.transform = `translateX(-${navScrollPos}px)`;
+  }
+
+  if (navArrowLeft) {
+    navArrowLeft.addEventListener("click", scrollNavLeft);
+  }
+
+  if (navArrowRight) {
+    navArrowRight.addEventListener("click", scrollNavRight);
+  }
 
   // Получаем все группы слайдов
   const slideGroups = [];

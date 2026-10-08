@@ -7279,7 +7279,7 @@ div.wave-block:nth-child(17):after {
 
 @media (max-width: 575px) {
   .nav {
-    margin-top: 42px;
+    margin-top: 5px;
   }
 }
 
@@ -7345,6 +7345,10 @@ div.wave-block:nth-child(17):after {
 .nav-list-repair {
   min-width: 390px;
   display: block;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
 @media (max-width: 1024px) {
@@ -7447,6 +7451,8 @@ div.wave-block:nth-child(17):after {
   .nav-wrap-repair {
     margin-top: 10px;
     background: #fcf9f8;
+    overflow: hidden;
+    position: relative;
   }
 
   .nav-wrap-repair:before {
