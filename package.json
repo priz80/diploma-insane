@@ -10,9 +10,13 @@
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
     "start": "webpack serve --mode=development --open",
-    "server": "php -S localhost:8081 -t dist/"
+    "server": "php -S localhost:8081 -t dist/",
+    "json-server": "json-server --watch db/db.json --port 4545",
+    "dev": "concurrently \"npm run json-server\" \"npm start\""
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
+    "json-server": "^0.17.4",
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^6.0.0"
