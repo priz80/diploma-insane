@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -36,24 +38,24 @@ jobs:
 
       - name: Test SSH
         run: |
-          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -p 22 root@${{ secrets.FASTVPS_HOST }} "echo OK && pwd"
+          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "echo OK && pwd"
 
       - name: Deploy main site
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./dist/ root@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./dist/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
 
       - name: Deploy admin
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./admin/ root@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/admin/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./admin/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/admin/
 
       - name: Deploy db and server
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./db/ root@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/db/
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./server.js root@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./db/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/db/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./server.js ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
 
       - name: Setup JSON Server with PM2
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 root@${{ secrets.FASTVPS_HOST }} "
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "
             cd /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma
             npm install json-server --production
             pm2 delete json-server 2>/dev/null || true
@@ -64,7 +66,7 @@ jobs:
 
       - name: Deploy nginx config
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 root@${{ secrets.FASTVPS_HOST }} "
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "
             cp /tmp/nginx.conf /etc/nginx/sites-available/diploma 2>/dev/null || true
             rm -f /etc/nginx/sites-enabled/default
             ln -sf /etc/nginx/sites-available/diploma /etc/nginx/sites-enabled/diploma 2>/dev/null || true
@@ -72,4 +74,4 @@ jobs:
 
       - name: Restart nginx
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 root@${{ secrets.FASTVPS_HOST }} "sudo nginx -t && sudo systemctl reload nginx"
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "sudo nginx -t && sudo systemctl reload nginx"
