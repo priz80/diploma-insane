@@ -36,12 +36,12 @@ jobs:
 
       - name: Test SSH
         run: |
-          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "echo OK && pwd"
+          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -p 22 root@${{ secrets.FASTVPS_HOST }} "echo OK && pwd"
 
       - name: Deploy
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./dist/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./dist/ root@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
 
       - name: Restart nginx
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "sudo nginx -t && sudo systemctl reload nginx"
+          ssh -o StrictHostKeyChecking=no -p 22 root@${{ secrets.FASTVPS_HOST }} "sudo nginx -t && sudo systemctl reload nginx"
