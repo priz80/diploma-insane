@@ -18,7 +18,6 @@ const repairTypesPopupModule = () => {
   // Загрузка данных из JSON
   async function loadData() {
     try {
-      console.log("Загрузка данных из db/db.json...");
       const response = await fetch("./db/db.json");
       
       if (!response.ok) {
@@ -26,7 +25,6 @@ const repairTypesPopupModule = () => {
       }
       
       const jsonData = await response.json();
-      console.log("Загружено данных:", jsonData.length);
       
       // Проверяем структуру данных
       if (Array.isArray(jsonData)) {
@@ -34,12 +32,10 @@ const repairTypesPopupModule = () => {
       } else if (jsonData.data && Array.isArray(jsonData.data)) {
         allData = jsonData.data;
       } else {
-        console.warn("Неизвестная структура данных, пробуем использовать как массив");
         allData = Array.isArray(jsonData) ? jsonData : [];
       }
       
       generateCategories();
-      console.log("Категории:", categories.length);
       renderNav();
       if (categories.length > 0) {
         renderContent(categories[0][0]);
