@@ -64,6 +64,12 @@ jobs:
             pm2 startup
           "
 
+      - name: Create logs directory
+        run: |
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "
+            sudo mkdir -p /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/logs
+          "
+
       - name: Deploy nginx config
         run: |
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./nginx.conf ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/etc/nginx/sites-available/diploma.conf
