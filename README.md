@@ -80,9 +80,10 @@ sudo apt update && sudo apt install nginx
 npm install -g pm2
 
 # Размещение nginx.conf (nginx работает на порту 8080)
-sudo cp nginx.conf /etc/nginx/sites-available/diploma
-sudo rm -f /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/diploma /etc/nginx/sites-enabled/
+sudo cp nginx.conf /etc/nginx/sites-available/diploma.conf
+sudo chmod +x /etc/nginx/sites-available/diploma.conf
+sudo rm -f /etc/nginx/sites-enabled/*
+sudo ln -s /etc/nginx/sites-available/diploma.conf /etc/nginx/sites-enabled/diploma.conf
 sudo nginx -t && sudo systemctl reload nginx
 
 # Создание директорий
