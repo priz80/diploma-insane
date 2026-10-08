@@ -258,10 +258,12 @@ const portfolioSliderModule = () => {
       });
     }
 
-    // Закрытие popup
+    // Закрытие popup и сброс в начальное состояние
     closeButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         popup.style.visibility = "hidden";
+        currentSlide = 0;
+        showPopupSlide(0);
       });
     });
 
