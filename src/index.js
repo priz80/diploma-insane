@@ -5,6 +5,7 @@ const formSubmit = require("./modules/form-submit");
 const formulaPopup = require("./modules/formula-popup");
 const formulaSlider = require("./modules/formula-slider");
 const repairTypesTabs = require("./modules/repair-types-tabs");
+const portfolioSlider = require("./modules/portfolio-slider");
 
 dropDown();
 popupMenu();
@@ -13,3 +14,4 @@ formSubmit();
 formulaPopup();
 formulaSlider();
 repairTypesTabs();
+portfolioSlider();
