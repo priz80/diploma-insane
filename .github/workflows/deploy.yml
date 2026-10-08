@@ -31,7 +31,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: igor
+          REMOTE_USER: IGOR
           TARGET: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
           SOURCE: dist/
           ARGS: "-rlgoDzvO --delete"
