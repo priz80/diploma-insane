@@ -1,4 +1,4 @@
-name: Deploy Webpack Project (FTPS)
+name: Deploy to FastVPS (SSH)
 
 on:
   push:
@@ -25,13 +25,23 @@ jobs:
       - name: Build Webpack project
         run: npm run build
 
-      - name: Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy to FastVPS via SSH
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.SERVER_HOST }}
-          username: pagelist_ru_usr
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps                       # Включаем защищенный FTPS вместо обычного FTP
-          security: loose                      # Игнорируем проверку SSL-сертификата сервера
-          local-dir: ./dist/
-          server-dir: ./data/www/pagelist.ru/diploma/
+          host: ${{ secrets.FASTVPS_HOST }}
+          username: ${{ secrets.FASTVPS_USER }}
+          key: ${{ secrets.FASTVPS_SSH_KEY }}
+          port: 22
+          source: "./dist/"
+          target: "/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma"
+          strip_components: 1
+
+      - name: Restart nginx (optional)
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.FASTVPS_HOST }}
+          username: ${{ secrets.FASTVPS_USER }}
+          key: ${{ secrets.FASTVPS_SSH_KEY }}
+          port: 22
+          script: |
+            sudo nginx -t && sudo systemctl reload nginx
