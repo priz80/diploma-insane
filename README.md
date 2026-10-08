@@ -79,14 +79,37 @@ sudo apt update && sudo apt install nginx
 # Установка PM2
 npm install -g pm2
 
-# Размещение nginx.conf
+# Размещение nginx.conf (nginx работает на порту 8080)
 sudo cp nginx.conf /etc/nginx/sites-available/diploma
-sudo rm /etc/nginx/sites-enabled/default
+sudo rm -f /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/diploma /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 # Создание директорий
 sudo mkdir -p /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/{dist,admin,db,logs}
+```
+
+### Настройка FastPanel (reverse proxy)
+
+Так как FastPanel использует Apache на порту 80, nginx работает на порту 8080.
+
+1. Зайди в панель FastPanel
+2. Перейди в раздел **Домены** → **diploma-insane.pagelist.ru**
+3. В настройках домена найди **Reverse Proxy** или **Прокси**
+4. Настрой прокси:
+   - **Host:** `127.0.0.1`
+   - **Port:** `8080`
+   - **Протокол:** `http`
+5. Сохрани и перезапусти домен
+
+Или через SSH:
+
+```bash
+# Проверь что nginx работает
+curl -H "Host: diploma-insane.pagelist.ru" http://localhost:8080
+
+# Проверь API
+curl -H "Host: diploma-insane.pagelist.ru" http://localhost:8080/api/users
 ```
 
 ### GitHub Secrets
