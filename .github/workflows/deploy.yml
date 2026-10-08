@@ -66,10 +66,10 @@ jobs:
 
       - name: Deploy nginx config
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./nginx.conf ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/etc/nginx/sites-available/diploma
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./nginx.conf ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/etc/nginx/sites-available/diploma.conf
           ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "
-            rm -f /etc/nginx/sites-enabled/default
-            ln -sf /etc/nginx/sites-available/diploma /etc/nginx/sites-enabled/diploma
+            rm -f /etc/nginx/sites-enabled/*
+            ln -sf /etc/nginx/sites-available/diploma.conf /etc/nginx/sites-enabled/diploma.conf
           "
 
       - name: Restart nginx
