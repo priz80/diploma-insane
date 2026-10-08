@@ -75,6 +75,3 @@ jobs:
       - name: Restart nginx
         run: |
           ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }} "sudo nginx -t && sudo systemctl reload nginx"
-
-
-          
