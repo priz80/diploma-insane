@@ -1,7 +1,7 @@
 // ============================================
 // API Service — обёртка над fetch
 // ============================================
-const API_BASE = "http://localhost:4545";
+const API_BASE = "/api";
 
 const ApiService = {
   async get(url) {
