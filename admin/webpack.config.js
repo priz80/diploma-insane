@@ -6,7 +6,6 @@ module.exports = {
   output: {
     filename: "admin.js",
     path: path.resolve(__dirname),
-    clean: true,
   },
   mode: "development",
   devServer: {
