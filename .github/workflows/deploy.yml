@@ -1,1 +1,37 @@
 
+name: Deploy Webpack Project (SFTP)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Webpack project
+        run: npm run build
+
+      - name: Deploy to VPS via SFTP
+        uses: easingthemes/ssh-deploy@v5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: root
+          TARGET: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
+          SOURCE: dist/
+          ARGS: "-rlgoDzvO --delete"
