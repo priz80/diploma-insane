@@ -36,7 +36,7 @@ npm start
 - **JSON Server** на `localhost:4545`
 - **Webpack Dev Server** на `localhost:3000`
 
-Открыть: `http://localhost:3000/admin/index.html`
+Открыть: `http://localhost:3000/index.html`
 Вход: `user` / `12345678`
 
 ### 3. Только JSON Server
