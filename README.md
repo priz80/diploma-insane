@@ -98,3 +98,7 @@ sudo mkdir -p /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/{dist,admin,
 - Основной сайт: `diploma-insane.pagelist.ru`
 - Админка: `diploma-insane.pagelist.ru/admin/`
 - API: `diploma-insane.pagelist.ru/api/`
+
+## BEST HOSTING
+
+[FastVPS](https://fastvps.ru/c_4295ba5d6a21fdd9e4d2b8a7fad98400)
