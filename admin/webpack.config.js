@@ -5,7 +5,7 @@ module.exports = {
   entry: "./admin.js",
   output: {
     filename: "admin.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname),
     clean: true,
   },
   mode: "development",
@@ -16,5 +16,12 @@ module.exports = {
     port: 3000,
     open: true,
     hot: true,
+    proxy: [
+      {
+        context: ["/api"],
+        target: "http://localhost:4545",
+        pathRewrite: { "^/api": "" },
+      },
+    ],
   },
 };
