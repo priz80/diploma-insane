@@ -6,6 +6,7 @@ const formulaPopup = require("./modules/formula-popup");
 const formulaSlider = require("./modules/formula-slider");
 const repairTypesTabs = require("./modules/repair-types-tabs");
 const portfolioSlider = require("./modules/portfolio-slider");
+const transparencySlider = require("./modules/transparency-slider");
 
 dropDown();
 popupMenu();
@@ -15,3 +16,4 @@ formulaPopup();
 formulaSlider();
 repairTypesTabs();
 portfolioSlider();
+transparencySlider();
