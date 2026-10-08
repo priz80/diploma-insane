@@ -1,6 +1,18 @@
 // src/modules/form-submit.js
 
 const formSubmitModule = () => {
+  // Открытие popup consultation по кнопкам
+  const consultationButtons = document.querySelectorAll('.btn-consultation');
+  const popupConsultation = document.querySelector('.popup-consultation');
+
+  consultationButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (popupConsultation) {
+        popupConsultation.style.visibility = 'visible';
+      }
+    });
+  });
+
   const forms = document.querySelectorAll('[id^="feedback"]');
 
   forms.forEach(form => {
@@ -52,6 +64,14 @@ const formSubmitModule = () => {
         });
     });
   });
+
+  // Закрытие popup consultation
+  const closeConsultation = document.querySelector('.close-consultation');
+  if (closeConsultation && popupConsultation) {
+    closeConsultation.addEventListener('click', () => {
+      popupConsultation.style.visibility = 'hidden';
+    });
+  }
 
   // Закрытие popup благодарности
   const closeThank = document.querySelector('.close-thank');
