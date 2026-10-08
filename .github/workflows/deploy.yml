@@ -1,4 +1,4 @@
-name: Deploy Webpack Project (SSH)
+name: Deploy Webpack Project (FTPS)
 
 on:
   push:
@@ -25,13 +25,13 @@ jobs:
       - name: Build Webpack project
         run: npm run build
 
-      - name: Deploy via rsync over SSH
-        uses: Burnett01/rsync-deployments@7.0.1
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          remote_host: ${{ secrets.SERVER_HOST }}
-          remote_user: pagelist_ru_usr
-          remote_port: 22
-          path: dist/
-          remote_path: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
-          switches: -rlgoDzvO --delete
+          server: ${{ secrets.SERVER_HOST }}
+          username: pagelist_ru_usr
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps                       # Принудительно включаем защищенный FTPS
+          security: loose                      # Отключаем строгую проверку SSL хостинга
+          local-dir: ./dist/
+          server-dir: ./data/www/pagelist.ru/diploma/
