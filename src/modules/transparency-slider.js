@@ -121,6 +121,112 @@ const transparencySliderModule = () => {
 
   // Слушаем resize
   window.addEventListener("resize", handleResize);
+
+  // === Popup transparency ===
+  const initPopupTransparency = () => {
+    const popup = document.querySelector(".popup-transparency");
+    if (!popup) return;
+
+    const popupSlider = popup.querySelector(".popup-transparency-slider");
+    const popupSlides = [...popupSlider.querySelectorAll(".popup-transparency-slider__slide")];
+    const popupArrowLeft = popup.querySelector("#transparency_left");
+    const popupArrowRight = popup.querySelector("#transparency_right");
+    const popupCounterCurrent = popup.querySelector("#transparency-popup-counter .slider-counter-content__current");
+    const popupCounterTotal = popup.querySelector("#transparency-popup-counter .slider-counter-content__total");
+    const closeButtons = [...popup.querySelectorAll(".close")];
+
+    if (popupSlides.length === 0) return;
+
+    let currentSlide = 0;
+    const totalSlides = popupSlides.length;
+
+    // Устанавливаем общее количество в счетчике
+    if (popupCounterTotal) {
+      popupCounterTotal.textContent = totalSlides;
+    }
+
+    // Позиционируем слайды абсолютно
+    popupSlides.forEach((slide, i) => {
+      slide.style.position = "absolute";
+      slide.style.top = "0";
+      slide.style.left = "0";
+      slide.style.width = "100%";
+      slide.style.opacity = i === 0 ? "1" : "0";
+      slide.style.zIndex = i === 0 ? "1" : "0";
+      slide.style.transition = "opacity 0.4s ease";
+      slide.style.pointerEvents = i === 0 ? "auto" : "none";
+    });
+
+    function showPopupSlide(index) {
+      if (index < 0) return;
+      if (index >= totalSlides) return;
+
+      currentSlide = index;
+
+      popupSlides.forEach((slide, i) => {
+        if (i === index) {
+          slide.style.opacity = "1";
+          slide.style.zIndex = "1";
+          slide.style.pointerEvents = "auto";
+        } else {
+          slide.style.opacity = "0";
+          slide.style.zIndex = "0";
+          slide.style.pointerEvents = "none";
+        }
+      });
+
+      if (popupCounterCurrent) {
+        popupCounterCurrent.textContent = index + 1;
+      }
+
+      if (popupArrowLeft) {
+        popupArrowLeft.style.display = index === 0 ? "none" : "block";
+      }
+      if (popupArrowRight) {
+        popupArrowRight.style.display = index === totalSlides - 1 ? "none" : "block";
+      }
+    }
+
+    if (popupArrowLeft) {
+      popupArrowLeft.addEventListener("click", () => {
+        showPopupSlide(currentSlide - 1);
+      });
+    }
+
+    if (popupArrowRight) {
+      popupArrowRight.addEventListener("click", () => {
+        showPopupSlide(currentSlide + 1);
+      });
+    }
+
+    // Закрытие popup
+    closeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        popup.style.visibility = "hidden";
+      });
+    });
+
+    // Делаем функцию доступной глобально
+    window.openTransparencyPopup = function(index) {
+      showPopupSlide(index);
+      popup.style.visibility = "visible";
+    };
+  };
+
+  // === Click on item-hover ===
+  const initItemHoverClick = () => {
+    const itemHovers = [...document.querySelectorAll(".transparency-item .item-hover")];
+    itemHovers.forEach((hover, index) => {
+      hover.addEventListener("click", () => {
+        if (window.openTransparencyPopup) {
+          window.openTransparencyPopup(index);
+        }
+      });
+    });
+  };
+
+  initPopupTransparency();
+  initItemHoverClick();
 };
 
 module.exports = transparencySliderModule;
