@@ -3,39 +3,34 @@ name: Deploy Webpack Project (SFTP)
 on:
   push:
     branches:
-      - main  # Скрипт сработает автоматически при пуше в ветку main
+      - main  # Деплой запустится автоматически при пуше в ветку main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Скачиваем актуальный код из репозитория
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Настраиваем Node.js в облаке GitHub
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
 
-      # 3. Устанавливаем зависимости из package-lock.json
       - name: Install dependencies
         run: npm ci
 
-      # 4. Запускаем сборку Webpack в продакшн-режиме
       - name: Build Webpack project
         run: npm run build
 
-      # 5. Копируем файлы в целевую папку на сервере по SFTP
       - name: Deploy to VPS via SFTP
         uses: easingthemes/ssh-deploy@v5
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: root
-          TARGET: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/  # Ваш точный путь
-          SOURCE: dist/  # Папка, куда Webpack сохраняет билд (измените, если у вас build/)
-          ARGS: "-rlgoDzvO --delete"  # Очищает старые файлы в папке diploma, если они удалены в репозитории
+          TARGET: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
+          SOURCE: dist/
+          ARGS: "-rlgoDzvO --delete"
