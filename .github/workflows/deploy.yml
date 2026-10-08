@@ -26,12 +26,11 @@ jobs:
         run: npm run build
 
       - name: Deploy via rsync over SSH
-        uses: Burnett01/rsync-deployments@7.0.1  # Используем стабильный и гибкий инструмент
+        uses: Burnett01/rsync-deployments@7.0.1
         with:
-          TEMPLATE: linux-node
-          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: pagelist_ru_usr
-          TARGET: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
-          SOURCE: dist/
-          ARGS: -rlgoDzvO --delete
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }} # Переименовали в remote_key
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: pagelist_ru_usr
+          path: dist/                                 # Переименовали в path
+          remote_path: /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/ # Переименовали в remote_path
+          switches: -rlgoDzvO --delete
