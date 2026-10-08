@@ -1131,9 +1131,6 @@ template,
   min-height: 400px;
   margin-top: 102px;
   display: flex;
-  align-items: flex-start;
-  width: 72%;
-  overflow: hidden;
 }
 
 .hide-slide {
