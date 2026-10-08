@@ -32,5 +32,4 @@ jobs:
           username: pagelist_ru_usr          # Логин из FASTPANEL
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          # Для FTP пишем путь относительно корня пользователя
           server-dir: ./data/www/pagelist.ru/diploma/
