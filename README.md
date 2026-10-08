@@ -2,27 +2,42 @@
 
 ## Запуск локально
 
-### 1. Основной сайт + админка
+### 1. Основной сайт
 
 ```bash
 npm install
-npm run dev
+npm start
+```
+
+Webpack Dev Server на `localhost:8080`
+
+Открыть: `http://localhost:8080`
+
+**Для работы форм** (отправка через `server.php`) — запусти PHP-сервер в отдельном терминале:
+
+```bash
+npm run server
+```
+
+PHP-сервер запустится на `localhost:8081`, и форма будет работать.
+
+### 2. Админка
+
+```bash
+# Терминал 1 — JSON Server
+npm run json-server
+
+# Терминал 2 — Админка
+cd admin
+npm start
 ```
 
 Запустит:
 - **JSON Server** на `localhost:4545`
-- **Webpack Dev Server** на `localhost:8080`
+- **Webpack Dev Server** на `localhost:3000`
 
-Открыть:
-- Сайт: `http://localhost:8080`
-- Админка: `http://localhost:8080/admin/index.html`
-- Вход: `user` / `12345678`
-
-### 2. Только основной сайт
-
-```bash
-npm start
-```
+Открыть: `http://localhost:3000/admin/index.html`
+Вход: `user` / `12345678`
 
 ### 3. Только JSON Server
 
