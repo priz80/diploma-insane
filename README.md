@@ -2,21 +2,41 @@
 
 ## Запуск локально
 
-### 1. Основной сайт
+### 1. Основной сайт + админка
+
 ```bash
 npm install
-npm start          # Webpack Dev Server
-npm run build      # Сборка в dist/
+npm run dev
 ```
 
-### 2. Админка с JSON Server
+Запустит:
+- **JSON Server** на `localhost:4545`
+- **Webpack Dev Server** на `localhost:8080`
+
+Открыть:
+- Сайт: `http://localhost:8080`
+- Админка: `http://localhost:8080/admin/index.html`
+- Вход: `user` / `12345678`
+
+### 2. Только основной сайт
+
 ```bash
-npm install
-npm run dev        # JSON Server + Webpack Dev Server
+npm start
 ```
 
-Открыть: `http://localhost:3000/admin/index.html`
-Вход: `user` / `12345678`
+### 3. Только JSON Server
+
+```bash
+npm run json-server
+```
+
+### 4. Сборка продакшен
+
+```bash
+npm run build
+```
+
+Все запросы к `/api/users`, `/api/items` автоматически перенаправляются на JSON Server через proxy.
 
 ## Архитектура
 
