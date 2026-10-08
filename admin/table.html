@@ -11,6 +11,8 @@
 	<main class="main">
 		<div id="container" class="container">
 			<h1 class="title-page">Список услуг</h1>
+			<input type="text" id="searchInput" class="input" placeholder="Поиск по типу и виду работ...">
+
 			<label>
 				<select name="typeItem" id="typeItem">
 					<option value="Все услуги">Все услуги</option>
@@ -191,8 +193,7 @@
 				</svg>
 			</span>
 			</button>
-			<h3 class="modal__header">Добавение новой услуги</h3>
-			<!--<h3 class="modal__header">Изменение услуги</h3>-->
+			<h3 class="modal__header">Добавление новой услуги</h3>
 			<form>
 				<label class="label">
 					<input id="type" class="input input__type" placeholder="Тип услуги*">
@@ -215,5 +216,7 @@
 			</form>
 		</div>
 	</div>
+
+	<script src="admin.js"></script>
 </body>
 </html>
