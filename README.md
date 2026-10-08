@@ -79,7 +79,7 @@ sudo mkdir -p /var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/{dist,admin,
 | Secret | Значение |
 |--------|----------|
 | `FASTVPS_HOST` | IP сервера |
-| `FASTVPS_USER` | `root` |
+| `FASTVPS_USER` | Пользователь |
 | `FASTVPS_SSH_KEY` | Приватный SSH ключ |
 
 ## API
