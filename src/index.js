@@ -7,6 +7,8 @@ const formulaSlider = require("./modules/formula-slider");
 const repairTypesTabs = require("./modules/repair-types-tabs");
 const portfolioSlider = require("./modules/portfolio-slider");
 const transparencySlider = require("./modules/transparency-slider");
+const reviewsSlider = require("./modules/reviews-slider");
+const accordion = require("./modules/accordion");
 
 dropDown();
 popupMenu();
@@ -17,3 +19,5 @@ formulaSlider();
 repairTypesTabs();
 portfolioSlider();
 transparencySlider();
+reviewsSlider();
+accordion();
