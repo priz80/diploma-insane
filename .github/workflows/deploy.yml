@@ -26,10 +26,11 @@ jobs:
         run: npm run build
 
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Указали точную стабильную версию
         with:
-          server: ${{ secrets.SERVER_HOST }} # Ваш IP из секретов
-          username: pagelist_ru_usr          # Логин из FASTPANEL
+          server: ${{ secrets.SERVER_HOST }}
+          username: pagelist_ru_usr
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./data/www/pagelist.ru/diploma/
+
