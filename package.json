@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
-    "start": "node copy-db.js && webpack serve --mode=development --open",
+    "start": "webpack serve --mode=development --open",
     "server": "php -S localhost:8081 -t dist/",
     "json-server": "json-server --watch db/db.json --port 4545",
     "dev": "concurrently \"npm run json-server\" \"npm start\""
