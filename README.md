@@ -5,9 +5,14 @@
 ### 1. Основной сайт
 
 ```bash
+# Терминал 1
 npm install
 npm start
 ```
+
+```bash
+# Терминал 2 — JSON Server
+npm run json-server
 
 Webpack Dev Server на `localhost:8080`
 
@@ -15,11 +20,6 @@ Webpack Dev Server на `localhost:8080`
 
 ### 2. Админка
 
-```bash
-# Терминал 1 — JSON Server
-npm run json-server
-
-# Терминал 2 — Админка
 cd admin
 npm start
 ```

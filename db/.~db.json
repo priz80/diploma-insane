@@ -39,9 +39,18 @@
       "type": "TEST",
       "name": "BUILD",
       "units": "pc",
-      "cost": 1000000,
-      "id": "FRg3Ej2"
+      "cost": 10000000,
+      "id": "S7xper6"
     }
   ],
-  "requests": []
+  "requests": [
+    {
+      "phone": "+7 (989) 820-01-03",
+      "id": 1
+    },
+    {
+      "phone": "+7 (989) 820-01-03",
+      "id": 2
+    }
+  ]
 }
