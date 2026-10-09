@@ -50,7 +50,7 @@ jobs:
 
       - name: Deploy db and server
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./db/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/db/
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./admin/db/ ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/admin/db/
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p 22" ./server.js ${{ secrets.FASTVPS_USER }}@${{ secrets.FASTVPS_HOST }}:/var/www/pagelist_ru_usr/data/www/pagelist.ru/diploma/
 
       - name: Setup JSON Server with PM2
