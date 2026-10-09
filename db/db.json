@@ -34,6 +34,13 @@
       "name": "Демонтаж люстры",
       "units": "шт",
       "cost": 200
+    },
+    {
+      "type": "TEST",
+      "name": "BUILD",
+      "units": "pc",
+      "cost": 1000000,
+      "id": "FRg3Ej2"
     }
   ]
 }
