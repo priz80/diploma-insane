@@ -13,14 +13,6 @@ Webpack Dev Server на `localhost:8080`
 
 Открыть: `http://localhost:8080`
 
-**Для работы форм** (отправка через `server.php`) — запусти PHP-сервер в отдельном терминале:
-
-```bash
-npm run server
-```
-
-PHP-сервер запустится на `localhost:8081`, и форма будет работать.
-
 ### 2. Админка
 
 ```bash
