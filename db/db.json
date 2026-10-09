@@ -38,9 +38,9 @@
     {
       "type": "TEST",
       "name": "BUILD",
-      "units": "eg",
-      "cost": 10,
-      "id": "6yq6Ktx"
+      "units": "pc",
+      "cost": 100000,
+      "id": "lZ0Du-1"
     }
   ]
 }
