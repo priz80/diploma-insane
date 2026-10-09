@@ -5,14 +5,12 @@
 ### 1. Основной сайт
 
 ```bash
-# Терминал 1
-npm install
+# Терминал 1 — JSON Server
+npm run json-server
+
+# Терминал 2 — Webpack Dev Server
 npm start
 ```
-
-```bash
-# Терминал 2 — JSON Server
-npm run json-server
 
 Webpack Dev Server на `localhost:8080`
 
@@ -20,6 +18,7 @@ Webpack Dev Server на `localhost:8080`
 
 ### 2. Админка
 
+```bash
 cd admin
 npm start
 ```
@@ -28,7 +27,7 @@ npm start
 - **JSON Server** на `localhost:4545`
 - **Webpack Dev Server** на `localhost:3000`
 
-Открыть: `http://localhost:3000/index.html`
+Открыть: `http://localhost:3000/`
 Вход: `user` / `12345678`
 
 ### 3. Только JSON Server
@@ -43,7 +42,7 @@ npm run json-server
 npm run build
 ```
 
-Все запросы к `/api/users`, `/api/items` автоматически перенаправляются на JSON Server через proxy.
+Все запросы к `/api/users`, `/api/items`, `/api/requests` автоматически перенаправляются на JSON Server через proxy.
 
 ## API
 
@@ -55,6 +54,8 @@ npm run build
 | POST | `/api/items` | Создать услугу |
 | PATCH | `/api/items/{id}` | Обновить услугу |
 | DELETE | `/api/items/{id}` | Удалить услугу |
+| GET | `/api/requests` | Получить заявки |
+| POST | `/api/requests` | Создать заявку (из форм на сайте) |
 
 ## URL
 
