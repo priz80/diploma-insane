@@ -17,10 +17,6 @@ module.exports = {
     },
     proxy: [
       {
-        context: ["/server.php"],
-        target: "http://localhost:8081",
-      },
-      {
         context: ["/api"],
         target: "http://localhost:4545",
         pathRewrite: { "^/api": "" },
@@ -30,17 +26,17 @@ module.exports = {
       if (!devServer) return middlewares;
       
       middlewares.push({
-        name: 'serve-db',
-        path: '/db',
+        name: "serve-db",
+        path: "/db",
         middleware: (req, res) => {
           const filePath = path.join(__dirname, req.url);
           try {
             const data = fs.readFileSync(filePath);
-            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.writeHead(200, { "Content-Type": "application/json" });
             res.end(data);
           } catch (e) {
             res.writeHead(404);
-            res.end('Not found');
+            res.end("Not found");
           }
         }
       });
